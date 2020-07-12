@@ -13,10 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'Frontend'], function () {
+    Route::get('/', 'PageController@index')->name('page.index');
 });
 
-Route::get('/admin', function () {
-    return view('backend.index');
+Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function () {
+    Route::get('/', 'PageController@index')->name('page.index');
+
+    Route::group(['prefix' => 'category'], function () {
+        Route::get('/', 'CategoryController@index')->name('category.index');
+        Route::get('/create', 'CategoryController@create')->name('category.create');
+        Route::post('/create', 'CategoryController@store')->name('category.store');
+        Route::get('/edit/{slug}', 'CategoryController@edit')->name('category.edit');
+    });
+
 });
+
+
+

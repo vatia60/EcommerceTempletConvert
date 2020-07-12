@@ -121,7 +121,15 @@
     font-weight: 500;
     font-size: 40px;
 }
-
+.category-menu-list ul li .category-menu-dropdown {
+    background: #ece9e9 none repeat scroll 0 0;
+    padding: 8px 30px;
+    width: 450px;
+}
+.form-body {
+    width: 60%;
+    padding-top: 40px;
+}
 
 
 

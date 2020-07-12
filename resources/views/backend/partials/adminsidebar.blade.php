@@ -4,16 +4,13 @@
     </div>
     <div class="category-menu-list">
         <ul>
-            <li><a href="#"><img alt="" src="{{ asset('public') }}/images//icons/thum2.png"> Women’s Clothing <i class="zmdi zmdi-chevron-right"></i></a>
+            <li><a href="#"><img alt="" src="{{ asset('public') }}/images//icons/thum2.png"> Category <i class="zmdi zmdi-chevron-right"></i></a>
                 <div class="category-menu-dropdown">
                     <div class="category-part-1 category-common mb--30">
-                        <h4 class="categories-subtitle"> Jewelry & Watches</h4>
                         <ul>
-                            <li><a href="#"> Men’s Clothing</a></li>
-                            <li><a href="#"> Computer & Office</a></li>
-                            <li><a href="#"> Jewelry & Watches</a></li>
-                            <li><a href="#"> Bags & Shoes</a></li>
-                            <li><a href="#"> Phones & Accessories</a></li>
+                            <li><a href="{{ route('category.create') }}"> Create Category</a></li>
+                            <li><a href="#"> Update Category</a></li>
+                            <li><a href="{{ route('category.index') }}"> Show Category</a></li>
                         </ul>
                     </div>
 

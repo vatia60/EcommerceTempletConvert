@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Model\Category;
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+         $data = [];
+         $data['categories'] = Category::select(['name', 'slug', 'image'])->get();
+         return view('backend.category.index', $data);
     }
 
     /**
@@ -24,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.category.create');
     }
 
     /**
@@ -35,7 +39,34 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+          ]);
+
+          try {
+
+            if($request->hasFile('image')){
+                $imageName = time().'.'.$request->image->getClientOriginalExtension();
+                $request->image->move(public_path('images/categories'), $imageName);
+
+            }
+
+           Category::create([
+               'name' => $request->input('name'),
+               'slug' => Str::slug($request->input('name')),
+               'image' => $imageName,
+              ]);
+
+              $this->setSuccess('Category created successfully');
+
+              return redirect()->back();
+
+          } catch (\Exception $e) {
+
+              $this->setError($e->getMessage());
+              return redirect()->back();
+          }
     }
 
     /**
@@ -55,7 +86,7 @@ class CategoryController extends Controller
      * @param  \App\r  $r
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
         //
     }

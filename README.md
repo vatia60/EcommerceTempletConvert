@@ -3,6 +3,10 @@ This is free HTML5 BOOTSTRAP 4 template. Download link: https://themehunt.com/it
 
 Laravel 7
 
+## How to used
+Clone repo
+Run: php artisan migrate:fresh --seed
+
 
 ## License
 
