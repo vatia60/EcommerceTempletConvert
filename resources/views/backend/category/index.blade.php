@@ -22,7 +22,22 @@
             <td>{{ $category->name }}</td>
             <td> <img src="{{ asset('public/images/categories').'/'. $category->image}}" alt="nai"></td>
             <td>
-                <a href="{{ route('category.edit', $category->slug) }}">Edit</a>
+                <div class="rowf">
+                    <div class="newf">
+                        <a href="{{ route('category.edit', $category->id) }}" class="btn btn-info">Edit</a>
+                    </div>
+                    <div class="newf">
+                        <form action="{{ route('category.destroy', $category->id) }}" method="post">
+                            @csrf
+                            <input type="hidden" value="{{  $category->id }}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            
+                        </form>
+                    </div>
+                </div>
+                
+            
+                
             </td>
           </tr>
           @endforeach

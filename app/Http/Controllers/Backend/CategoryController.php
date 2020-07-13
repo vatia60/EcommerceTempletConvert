@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Model\Category;
+use File;
 
 class CategoryController extends Controller
 {
@@ -17,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
          $data = [];
-         $data['categories'] = Category::select(['name', 'slug', 'image'])->get();
+         $data['categories'] = Category::select(['id','name', 'slug', 'image'])->get();
          return view('backend.category.index', $data);
     }
 
@@ -86,9 +87,11 @@ class CategoryController extends Controller
      * @param  \App\r  $r
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        //
+         $data = [];
+         $data['categories'] = Category::where('id', $id)->first();
+         return view('backend.category.edit', $data);
     }
 
     /**
@@ -98,9 +101,50 @@ class CategoryController extends Controller
      * @param  \App\r  $r
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        //
+        
+        $this->validate($request, [
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+          ]);
+
+          try {
+           
+            $category = Category::find($id);
+
+            if(count([$request->image]) > 0){
+
+               if(File::exists("images/categories".$category->image)){ 
+
+                  File::delete("images/categories".$category->image); 
+
+               }
+
+               if($request->hasFile('image')){
+
+                $imageName = time().'.'.$request->image->getClientOriginalExtension();
+                $request->image->move(public_path('images/categories'), $imageName);
+
+                }
+                $imageName = $category->image;
+
+            }
+
+
+           $category->update([
+               'name' => $request->input('name'),
+               'image' => $imageName,
+              ]);
+
+              $this->setSuccess('Category Updated successfully');
+
+              return redirect()->route('category.index');
+
+          } catch (\Exception $e) {
+
+              $this->setError($e->getMessage());
+              return redirect()->back();
+          }
     }
 
     /**
@@ -111,6 +155,15 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        if(File::exists('images/categories/'.$category->image)){
+            File::delete('images/categories/'.$category->image);
+         }
+
+        $category->delete();
+        $this->setSuccess('Category Delete successfully');
+
+        return redirect()->back();
+
     }
 }

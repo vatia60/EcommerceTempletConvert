@@ -71,7 +71,7 @@
     width: 50px;
     z-index: 200;
 }
-#scrollUp:hover {} @-webkit-keyframes scroll-ani-to-top {
+@-webkit-keyframes scroll-ani-to-top {
     0% {
         opacity: 0;
         bottom: 0;
@@ -130,8 +130,12 @@
     width: 60%;
     padding-top: 40px;
 }
-
-
+.rowf {
+    display:flex;
+}
+.newf{
+    margin-right: 10px;
+}
 
 #scrollUp:hover i {
     animation: 800ms linear 0s normal none infinite running scroll-ani-to-top;
@@ -2171,7 +2175,6 @@ product__style--7
 }
 .price--output > * {
     display: inline-block;
-    float: left;
 }
 .price--output input {
     padding-left: 10px;
@@ -2492,7 +2495,7 @@ select.select-color {
     background: #ff4136 none repeat scroll 0 0;
     color: #fff;
 }
-.review__info ul.rating li a {} .review__info ul.rating li i {
+.review__info ul.rating li i {
     color: #f3c258;
     font-size: 17px;
 }
@@ -3576,7 +3579,6 @@ blockquote::before {
     box-shadow: none;
     color: #fff;
     display: inline-block;
-    float: left;
     font-size: 12px;
     font-weight: 700;
     height: 40px;

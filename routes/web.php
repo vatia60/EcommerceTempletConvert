@@ -24,7 +24,9 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function () {
         Route::get('/', 'CategoryController@index')->name('category.index');
         Route::get('/create', 'CategoryController@create')->name('category.create');
         Route::post('/create', 'CategoryController@store')->name('category.store');
-        Route::get('/edit/{slug}', 'CategoryController@edit')->name('category.edit');
+        Route::get('/edit/{id}', 'CategoryController@edit')->name('category.edit');
+        Route::post('/update/{id}', 'CategoryController@update')->name('category.update');
+        Route::post('/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
     });
 
 });
