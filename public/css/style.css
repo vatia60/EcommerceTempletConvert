@@ -136,6 +136,15 @@
 .newf{
     margin-right: 10px;
 }
+.img-50 {
+    width: 50px;
+    height: 30px;
+}
+
+
+
+
+
 
 #scrollUp:hover i {
     animation: 800ms linear 0s normal none infinite running scroll-ani-to-top;
@@ -570,7 +579,6 @@
 .timer span {
     border: 1px solid #666;
     display: inline-block;
-    float: left;
     font-size: 25px;
     margin-right: 20px;
     padding: 10px 20px;
