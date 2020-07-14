@@ -14,11 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'Frontend'], function () {
-    Route::get('/', 'PageController@index')->name('page.index');
+    Route::get('/', 'PageController@index')->name('frontend.page.index');
+    Route::get('/product/{id}', 'PageController@productdetails')->name('page.productdetails');
+    Route::get('/productaddtocart/{id}', 'PageController@productaddcart')->name('page.productaddcart');
+
+    Route::post('/cart', 'AddtocartController@addtocart')->name('addtocart');
+    Route::get('/cart/showcart', 'AddtocartController@showcart')->name('showcart');
+    
 });
 
 Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function () {
-    Route::get('/', 'PageController@index')->name('page.index');
+    Route::get('/', 'PageController@index')->name('backend.page.index');
 
     Route::group(['prefix' => 'category'], function () {
         Route::get('/', 'CategoryController@index')->name('category.index');

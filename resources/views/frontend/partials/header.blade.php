@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="{{ route('frontend.page.index') }}">
                             <img src="{{ asset('public') }}/images//logo/logo.png" alt="logo">
                         </a>
                     </div>
@@ -216,6 +216,10 @@
                         <a href="#"><i class="zmdi zmdi-close"></i></a>
                     </div>
                     <div class="shp__cart__wrap">
+                       
+                        @foreach ($cart as $item)
+
+
                         <div class="shp__single__product">
                             <div class="shp__pro__thumb">
                                 <a href="#">
@@ -223,36 +227,22 @@
                                 </a>
                             </div>
                             <div class="shp__pro__details">
-                                <h2><a href="product-details.html">BO&Play Wireless Speaker</a></h2>
-                                <span class="quantity">QTY: 1</span>
-                                <span class="shp__price">$105.00</span>
+                                <h2><a href="product-details.html">{{ $item['title'] }}</a></h2>
+                                <span class="quantity">{{ $item['quantity'] }}</span>
+                                <span class="shp__price">{{ $item['total_price'] }}</span>
                             </div>
                             <div class="remove__btn">
                                 <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
                             </div>
                         </div>
-                        <div class="shp__single__product">
-                            <div class="shp__pro__thumb">
-                                <a href="#">
-                                    <img src="{{ asset('public') }}/images//product/sm-img/2.jpg" alt="product {{ asset('public') }}/images/">
-                                </a>
-                            </div>
-                            <div class="shp__pro__details">
-                                <h2><a href="product-details.html">Brone Candle</a></h2>
-                                <span class="quantity">QTY: 1</span>
-                                <span class="shp__price">$25.00</span>
-                            </div>
-                            <div class="remove__btn">
-                                <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <ul class="shoping__total">
                         <li class="subtotal">Subtotal:</li>
-                        <li class="total__price">$130.00</li>
+                        <li class="total__price">{{ $total }}</li>
                     </ul>
                     <ul class="shopping__btn">
-                        <li><a href="cart.html">View Cart</a></li>
+                        <li><a href="{{ route('showcart') }}">View Cart</a></li>
                         <li class="shp__checkout"><a href="checkout.html">Checkout</a></li>
                     </ul>
                 </div>
