@@ -26,6 +26,13 @@
             <td>{{ $item['quantity'] }}</td>
             <td>{{ $item['unit_price'] }}</td>
             <td>{{ $item['total_price'] }}</td>
+            <td>
+                <form action="{{ route('removecart') }}" method="post">
+                   @csrf
+                 <input type="hidden" name="removecart" value="{{ $key }}">
+                 <button type="submit">Remove</button>
+                </form>
+            </td>
           </tr>
           @endforeach
           <tr>
@@ -35,7 +42,8 @@
             <td>Total</td>
             <td>{{ $total }}</td>
           </tr>
-
+          <a class="btn btn-danger" href="{{ clearcart }}">Clear Cart</a>
+          <a class="btn btn-success" href="{{ processcart }}">Process</a>
         </tbody>
       </table>
       @endif

@@ -14,102 +14,22 @@
                 <div class="col-md-8 col-lg-8 col-sm-6 col-xs-6">
                     <nav class="mainmenu__nav hidden-xs hidden-sm">
                         <ul class="main__menu">
-                            <li class="drop"><a href="index.html">Home</a></li>
-                            <li class="drop"><a href="portfolio-card-box-2.html">portfolio</a>
-                                <ul class="dropdown">
-                                    <li><a href="portfolio-card-box-2.html">portfolio</a></li>
-                                    <li><a href="single-portfolio.html">Single portfolio</a></li>
-                                </ul>
-                            </li>
-                            <li class="drop"><a href="blog.html">Blog</a>
-                                <ul class="dropdown">
-                                    <li><a href="blog.html">blog 3 column</a></li>
-                                    <li><a href="blog-details.html">Blog details</a></li>
-                                </ul>
-                            </li>
-                            <li class="drop"><a href="shop.html">Shop</a>
-                                <ul class="dropdown mega_dropdown">
-                                    <!-- Start Single Mega MEnu -->
-                                    <li><a class="mega__title" href="shop.html">shop layout</a>
-                                        <ul class="mega__item">
-                                            <li><a href="shop.html">default shop</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- End Single Mega MEnu -->
-                                    <!-- Start Single Mega MEnu -->
-                                    <li><a class="mega__title" href="shop.html">product details layout</a>
-                                        <ul class="mega__item">
-                                            <li><a href="product-details.html">tab style 1</a></li></li>
-                                        </ul>
-                                    </li>
-                                    <!-- End Single Mega MEnu -->
-                                    <!-- Start Single Mega MEnu -->
-                                    <li>
-                                        <ul class="mega__item">
-                                            <li>
-                                                <div class="mega-item-img">
-                                                    <a href="shop.html">
-                                                        <img src="{{ asset('public') }}/images//feature-img/3.png" alt="">
-                                                    </a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <!-- End Single Mega MEnu -->
-                                </ul>
-                            </li>
-                            <li class="drop"><a href="#">pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="about.html">about</a></li>
-                                    <li><a href="#">testimonials <span><i class="zmdi zmdi-chevron-right"></i></span></a>
-                                        <ul class="lavel-dropdown">
-                                            <li><a href="customer-review.html">customer review</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="shop.html">shop</a></li>
-                                    <li><a href="shop-sidebar.html">shop sidebar</a></li>
-                                    <li><a href="product-details.html">product details</a></li>
-                                    <li><a href="cart.html">cart</a></li>
-                                    <li><a href="wishlist.html">wishlist</a></li>
-                                    <li><a href="checkout.html">checkout</a></li>
-                                    <li><a href="team.html">team</a></li>
-                                    <li><a href="login-register.html">login & register</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="contact.html">contact</a></li>
+                            <li class="drop"><a href="{{ route('frontend.page.index')}}">Home</a></li>
+                            <li class="drop"><a href="#">portfolio</a></li>
+                            <li class="drop"><a href="#">Blog</a></li>
+                            <li class="drop"><a href="#">Shop</a></li>
+                            <li class="drop"><a href="#">pages</a></li>
+                            <li class="drop"><a href="#">contact</a></li>
                         </ul>
                     </nav>
                     <div class="mobile-menu clearfix visible-xs visible-sm">
                         <nav id="mobile_dropdown">
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="#">portfolio</a>
-                                    <ul>
-                                        <li><a href="portfolio-card-box-2.html">portfolio</a></li>
-                                        <li><a href="single-portfolio.html">Single portfolio</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="blog.html">blog</a>
-                                    <ul>
-                                        <li><a href="blog.html">blog 3 column</a></li>
-                                        <li><a href="blog-details.html">Blog details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">pages</a>
-                                    <ul>
-                                        <li><a href="about.html">about</a></li>
-                                        <li><a href="customer-review.html">customer review</a></li>
-                                        <li><a href="shop.html">shop</a></li>
-                                        <li><a href="shop-sidebar.html">shop sidebar</a></li>
-                                        <li><a href="product-details.html">product details</a></li>
-                                        <li><a href="cart.html">cart</a></li>
-                                        <li><a href="wishlist.html">wishlist</a></li>
-                                        <li><a href="checkout.html">checkout</a></li>
-                                        <li><a href="team.html">team</a></li>
-                                        <li><a href="login-register.html">login & register</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">contact</a></li>
+                                <li><a href="{{ route('frontend.page.index')}}">Home</a></li>
+                                <li><a href="#">portfolio</a></li>
+                                <li><a href="#">blog</a> </li>
+                                <li><a href="#">pages</a></li>
+                                <li><a href="#">contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -118,8 +38,7 @@
                 <div class="col-md-2 col-sm-4 col-xs-3">
                     <ul class="menu-extra">
                         <li class="search search__open hidden-xs"><span class="ti-search"></span></li>
-                        <li><a href="login-register.html"><span class="ti-user"></span></a></li>
-                        <li class="cart__menu"><span class="ti-shopping-cart"></span></li>
+                        <li class="cart__menu" style="position: relative"><span class="ti-shopping-cart"></span><span style="position: absolute; top: -10px; color:red;">{{ count($cart) }}</span></li>
                         <li class="toggle__menu hidden-xs hidden-sm"><span class="ti-menu"></span></li>
                     </ul>
                 </div>
@@ -162,49 +81,48 @@
                                 <img src="{{ asset('public') }}/images//logo/logo.png" alt="logo">
                             </a>
                         </div>
-                        <p>Lorem ipsum dolor sit amet consectetu adipisicing elit sed do eiusmod tempor incididunt ut labore.</p>
-                    </div>
-                    <ul class="sidebar__thumd">
-                        <li><a href="#"><img src="{{ asset('public') }}/images//sidebar-img/1.jpg" alt="sidebar {{ asset('public') }}/images/"></a></li>
-                        <li><a href="#"><img src="{{ asset('public') }}/images//sidebar-img/2.jpg" alt="sidebar {{ asset('public') }}/images/"></a></li>
-                        <li><a href="#"><img src="{{ asset('public') }}/images//sidebar-img/3.jpg" alt="sidebar {{ asset('public') }}/images/"></a></li>
-                        <li><a href="#"><img src="{{ asset('public') }}/images//sidebar-img/4.jpg" alt="sidebar {{ asset('public') }}/images/"></a></li>
-                        <li><a href="#"><img src="{{ asset('public') }}/images//sidebar-img/5.jpg" alt="sidebar {{ asset('public') }}/images/"></a></li>
-                        <li><a href="#"><img src="{{ asset('public') }}/images//sidebar-img/6.jpg" alt="sidebar {{ asset('public') }}/images/"></a></li>
-                        <li><a href="#"><img src="{{ asset('public') }}/images//sidebar-img/7.jpg" alt="sidebar {{ asset('public') }}/images/"></a></li>
-                        <li><a href="#"><img src="{{ asset('public') }}/images//sidebar-img/8.jpg" alt="sidebar {{ asset('public') }}/images/"></a></li>
-                    </ul>
-                    <div class="offset__widget">
-                        <div class="offset__single">
-                            <h4 class="offset__title">Language</h4>
-                            <ul>
-                                <li><a href="#"> Engish </a></li>
-                                <li><a href="#"> French </a></li>
-                                <li><a href="#"> German </a></li>
-                            </ul>
-                        </div>
-                        <div class="offset__single">
-                            <h4 class="offset__title">Currencies</h4>
-                            <ul>
-                                <li><a href="#"> USD : Dollar </a></li>
-                                <li><a href="#"> EUR : Euro </a></li>
-                                <li><a href="#"> POU : Pound </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="offset__sosial__share">
-                        <h4 class="offset__title">Follow Us On Social</h4>
-                        <ul class="off__soaial__link">
-                            <li><a class="bg--twitter" href="#"  title="Twitter"><i class="zmdi zmdi-twitter"></i></a></li>
-
-                            <li><a class="bg--instagram" href="#" title="Instagram"><i class="zmdi zmdi-instagram"></i></a></li>
-
-                            <li><a class="bg--facebook" href="#" title="Facebook"><i class="zmdi zmdi-facebook"></i></a></li>
-
-                            <li><a class="bg--googleplus" href="#" title="Google Plus"><i class="zmdi zmdi-google-plus"></i></a></li>
-
-                            <li><a class="bg--google" href="#" title="Google"><i class="zmdi zmdi-google"></i></a></li>
+                        <ul class="navbar-nav ml-auto">
+                            <!-- Authentication Links -->
+                            @guest
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li><br>
+                                @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    </li>
+                                @endif
+                            @else
+                            <li class="nav-item">
+                                    
+    
+                                {{ Auth::user()->name }}
+                               </li><br>
+                            
+                              <li class="nav-item">
+                                <a href="">Profile</a>
+                               </li><br>
+                               <li class="nav-item">
+                                <a href="{{ route('orderdashboard') }}">Order Dasboard</a>
+                               </li><br>
+                                <li class="nav-item">
+                                    
+    
+                                    <div class="logoutnew">
+                                        <a class="" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+    
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endguest
                         </ul>
+
                     </div>
                 </div>
             </div>
@@ -216,23 +134,32 @@
                         <a href="#"><i class="zmdi zmdi-close"></i></a>
                     </div>
                     <div class="shp__cart__wrap">
-                       
-                        @foreach ($cart as $item)
+
+                        @foreach ($cart as $key=>$item)
 
 
                         <div class="shp__single__product">
                             <div class="shp__pro__thumb">
                                 <a href="#">
-                                    <img src="{{ asset('public') }}/images//product/sm-img/1.jpg" alt="product {{ asset('public') }}/images/">
+                                    <img src="{{ asset('public') }}/images//product/sm-img/1.jpg" alt="nai">
                                 </a>
                             </div>
                             <div class="shp__pro__details">
                                 <h2><a href="product-details.html">{{ $item['title'] }}</a></h2>
-                                <span class="quantity">{{ $item['quantity'] }}</span>
-                                <span class="shp__price">{{ $item['total_price'] }}</span>
+                                <div class="row">
+                                    <div class="col-md-6"><span class="quantity">Quantity: {{ $item['quantity'] }}</span></div>
+                                    <div class="col-md-6"><span class="shp__price">Price: {{ $item['total_price'] }}</span></div>
+                                </div>
+
+
                             </div>
                             <div class="remove__btn">
-                                <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
+                                <form action="{{ route('removecart') }}" method="post">
+                                    @csrf
+                                  <input type="hidden" name="removecart" value="{{ $key }}">
+                                  <button type="submit"><i class="zmdi zmdi-close"></i></button>
+                                 </form>
+
                             </div>
                         </div>
                         @endforeach
@@ -243,7 +170,7 @@
                     </ul>
                     <ul class="shopping__btn">
                         <li><a href="{{ route('showcart') }}">View Cart</a></li>
-                        <li class="shp__checkout"><a href="checkout.html">Checkout</a></li>
+                        <li class="shp__checkout"><a href="{{ route('cartprocess.checkout') }}">Checkout</a></li>
                     </ul>
                 </div>
             </div>

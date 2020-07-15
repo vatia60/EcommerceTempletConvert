@@ -140,7 +140,18 @@
     width: 50px;
     height: 30px;
 }
-
+.offsetmenu, .shopping__cart, .user__meta {
+    
+    height: 50vh;
+    width: 200px;
+}
+.offsetmenu__close__btn {
+    padding: 29px 0px 24px;
+    right: 25px;
+}
+.offsetmenu__inner, .shopping__cart__inner, .user__meta__inner {
+    padding: 34px 12px 60px;
+}
 
 
 

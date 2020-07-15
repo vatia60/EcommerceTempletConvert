@@ -20,7 +20,14 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     Route::post('/cart', 'AddtocartController@addtocart')->name('addtocart');
     Route::get('/cart/showcart', 'AddtocartController@showcart')->name('showcart');
-    
+    Route::post('/cart/remove', 'AddtocartController@removecart')->name('removecart');
+    Route::get('/cart/clearcart', 'AddtocartController@clearcart')->name('clearcart');
+    Route::get('/cart/cartprocess', 'AddtocartController@checkout')->name('cartprocess.checkout');
+    Route::post('/cart/cartporcess', 'AddtocartController@cartporcess')->name('cartporcess');
+
+    Route::get('/cart/cartdetails/{id}', 'AddtocartController@cartdetails')->name('cartdetails');
+    Route::get('/cart/orderdashboard', 'AddtocartController@orderdashboard')->name('orderdashboard');
+
 });
 
 Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function () {
@@ -48,3 +55,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function () {
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

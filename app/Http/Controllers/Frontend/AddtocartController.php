@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Product;
 use App\Model\Cart;
+use App\Model\Order;
 
 class AddtocartController extends Controller
 {
@@ -76,51 +77,77 @@ class AddtocartController extends Controller
         return view('frontend.cart.showcart', $data);
     }
 
+    public function removecart(Request $request){
 
+        $this->validate($request,[
+            'removecart' => 'required'
+         ]);
 
+        $cart = session()->has('cart') ? session()->get('cart') : [];
+        unset($cart[$request->input('removecart')]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        session(['cart' => $cart]);
+
+        return redirect()->back();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function clearcart(){
+        session(['cart' => []]);
+        return redirect()->back();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function checkout(){
+        $data = [];
+        $data['cart'] = session()->has('cart') ? session()->get('cart') : [];
+        $data['total'] = array_sum(array_column($data['cart'],'total_price'));
+
+        return view('frontend.cart.checkout', $data);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function cartporcess(Request $request){
+        $this->validate($request,[
+            'customer_name' => 'required',
+            'customer_phone' => 'required',
+         ]);
+
+        $cart = session()->has('cart') ? session()->get('cart') : [];
+        $total = array_sum(array_column($cart, 'total_price'));
+
+         $order = Order::create([
+            'user_id' => 1,
+            'customer_name' => $request->input('customer_name'),
+            'customer_phone' => $request->input('customer_phone'),
+            'total_amount' => $total,
+            'paid_amount' => $total,
+         ]);
+
+         foreach ($cart as $key => $product) {
+             $order->products()->create([
+                   'product_id' => $key,
+                   'order_id' => $order->id,
+                   'quantity' => $product['quantity'],
+                   'price' => $total,
+             ]);
+
+          session()->forget(['total', 'cart']);
+          $this->setSuccess('Checkout processed successfully.');
+          return redirect()->route('frontend.page.index');
+         }
+
     }
+
+    public function cartdetails($id){
+        $data = [];
+        $data['order'] = Order::findOrFail($id);
+        return view('frontend.cart.cartdetails', $data);
+    }
+
+    public function orderdashboard(){
+        $data = [];
+        $data['order'] = Order::select(['customer_name', 'created_at','id'])->get();
+        return view('frontend.cart.orderdasboard', $data);
+    }
+
+
+
 }
